@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { db, tours } from "../lib/db/src";
 
 const CDN = "https://vl-prod-static.b-cdn.net/system/images";
