@@ -37,7 +37,8 @@ export default function TourDetail() {
   const { data: tour, isLoading, error } = useQuery<Tour>({
     queryKey: ["tour", params.id],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/api/tours/${params.id}`);
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const res = await fetch(`${API_URL}/api/tours/${params.id}`);
       if (!res.ok) throw new Error("Failed to fetch tour details");
       return res.json();
     },
@@ -63,7 +64,8 @@ export default function TourDetail() {
     setIsBookingLoading(true);
     
     try {
-      const res = await fetch("http://localhost:5000/api/bookings", {
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const res = await fetch(`${API_URL}/api/bookings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

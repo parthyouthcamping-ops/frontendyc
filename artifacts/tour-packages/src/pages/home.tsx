@@ -80,7 +80,8 @@ function Home() {
   const { data: allTours = [], isLoading } = useQuery<Tour[]>({
     queryKey: ["tours"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/api/tours");
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const res = await fetch(`${API_URL}/api/tours`);
       if (!res.ok) throw new Error("Failed to fetch tours");
       return res.json();
     },
